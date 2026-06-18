@@ -1,6 +1,8 @@
 # Update Active Context
 
-Update the living context document at session end. Maintains continuity across sessions and compiles knowledge into persistent files.
+Runs automatically before `/compact`. Keeps HANDOVER.md current so the next session starts with accurate context, then compiles knowledge into persistent files.
+
+**Normal workflow:** user runs `/compact` → this runs first → context is compressed → next session reads the updated HANDOVER.md.
 
 ## Step 1: Update HANDOVER.md
 

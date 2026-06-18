@@ -43,7 +43,9 @@ Every session:
 
 ## Session End
 
-Before ending any substantive session, run `/handover` (see `.claude/commands/handover.md`). It covers:
+**The normal trigger is `/compact`** — when the user runs `/compact` to compress the conversation, run `/handover` first (see `.claude/commands/handover.md`) before the context is summarized. This keeps HANDOVER.md current so the next session starts with accurate context.
+
+The `/handover` process covers:
 
 1. **Update `HANDOVER.md`** — threads, triage, decisions, session log
 2. **Prune + archive** — resolved threads move to `handover/YYYY-MM-DD.md` (weekly files); keep HANDOVER.md under 80 lines
@@ -137,21 +139,25 @@ The chief of staff can read and write across all layers. When deep project conte
 
 ## Memory System
 
-Persistent topic files in `memory/`. `memory/MEMORY.md` is the index — always loaded. Topic files are loaded on demand when relevant.
+Two scopes:
 
-Four types:
+**Chief-of-staff memory** (`memory/` in this repo) — facts about you that apply across all projects: who you are, communication preferences, recurring feedback, cross-project lessons. `memory/MEMORY.md` is the index. Topic files are loaded on demand.
+
+**Project memory** — per-project context lives in that project's own directory. Add a `memory/` folder to any project dir and reference it in that project's CLAUDE.md. Project memory is for things that don't belong in the code but matter across sessions (architectural decisions, quirky behaviors, lessons from debugging).
+
+Four topic types (both scopes use the same format):
 - **user** — who they are, role, preferences, how to work with them
 - **feedback** — corrections and confirmed approaches (what to avoid, what works)
 - **project** — context behind ongoing work not derivable from the code
-- **reference** — pointers to external resources (Slack channels, dashboards, docs)
+- **reference** — pointers to external resources (dashboards, channels, docs)
 
-**When to save:** When you learn something non-obvious that a future session should know. Don't save code patterns, git history, or anything already in the files.
+**When to save:** Something non-obvious that a future session should know. Not code patterns, git history, or anything already in the files.
 
 **How to save:**
-1. Write a file: `memory/<type>_<slug>.md` with frontmatter `name`, `description`, `type`
+1. Write `memory/<type>_<slug>.md` with frontmatter: `name`, `description`, `type`
 2. Add a one-line pointer to `memory/MEMORY.md` under the right section
 
-Do this silently — no permission needed. Tell the user briefly when something is saved.
+Silently — no permission needed. Tell the user briefly: "Saved to memory: [topic]."
 
 ---
 
