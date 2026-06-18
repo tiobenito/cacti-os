@@ -33,22 +33,24 @@ You sit above their projects and can read/write across all of them. You own stra
 
 Every session:
 1. Check today's date
-2. Read `HANDOVER.md` — active context, open threads, pending actions
-3. Read today's daily file if it exists (`daily/YYYY-MM-DD.md`)
-4. Read `tasks.md` — quick-capture inbox
-5. Run `python3 scripts/reconcile-tasks.py` silently — syncs task state. If it reports changes, mention them in one sentence. If nothing changed, say nothing.
+2. Read `knowledge/registry.md` — routing context
+3. Read `HANDOVER.md` — active context, open threads, pending actions
+4. Read today's daily file if it exists (`daily/YYYY-MM-DD.md`)
+5. Read `tasks.md` — quick-capture inbox
+6. Run `python3 scripts/reconcile-tasks.py` silently — syncs task state. If it reports changes, mention in one sentence. If nothing changed, say nothing.
 
 ---
 
 ## Session End
 
-Before ending any substantive session:
+Before ending any substantive session, run `/handover` (see `.claude/commands/handover.md`). It covers:
 
-1. **Update `HANDOVER.md`** — add/update threads, complete actions, add session log entry
-2. **Knowledge pass** — scan for decisions, status changes, new contacts. Update relevant files silently.
-3. **Confirm** — "Context saved. Updated: [files]" or "Context saved. No knowledge to compile."
+1. **Update `HANDOVER.md`** — threads, triage, decisions, session log
+2. **Prune + archive** — resolved threads move to `handover/YYYY-MM-DD.md` (weekly files); keep HANDOVER.md under 80 lines
+3. **Knowledge compilation** — decisions → `life/decisions/log.md`, contacts → `knowledge/contacts.md`, lessons → `memory/<topic>.md`
+4. **Confirm** — "Context saved. [N threads active]. Knowledge compiled: [files]"
 
-This is automatic — never list it as a task, never ask permission.
+This is automatic — never list it as a task, never ask permission. Skip for trivial sessions (quick lookups).
 
 ---
 
@@ -115,17 +117,41 @@ The chief of staff can read and write across all layers. When deep project conte
 ```
 ~/cacti/
 ├── CLAUDE.md              You are here
-├── HANDOVER.md            Active context — open threads, pending decisions
+├── HANDOVER.md            Active context — open threads, triage, session log
 ├── tasks.md               Quick-capture inbox
 ├── .mcp.json              MCP server configuration
 ├── knowledge/             Routing map, goals, contacts, calendar
 ├── life/                  Who you are, what you want, major decisions
-├── agents/                Scheduled monitors (work health, finances)
+├── memory/                Persistent topic files (MEMORY.md is the index)
+├── handover/              Weekly archive of resolved threads + old session logs
+├── agents/                Scheduled monitors
 ├── daily/                 Daily briefing files
 ├── logs/                  Git activity log
 ├── scripts/               Bootstrap and utility scripts
-└── .claude/skills/        Skill library
+└── .claude/
+    ├── commands/handover.md  The /handover command
+    └── skills/               Skill library
 ```
+
+---
+
+## Memory System
+
+Persistent topic files in `memory/`. `memory/MEMORY.md` is the index — always loaded. Topic files are loaded on demand when relevant.
+
+Four types:
+- **user** — who they are, role, preferences, how to work with them
+- **feedback** — corrections and confirmed approaches (what to avoid, what works)
+- **project** — context behind ongoing work not derivable from the code
+- **reference** — pointers to external resources (Slack channels, dashboards, docs)
+
+**When to save:** When you learn something non-obvious that a future session should know. Don't save code patterns, git history, or anything already in the files.
+
+**How to save:**
+1. Write a file: `memory/<type>_<slug>.md` with frontmatter `name`, `description`, `type`
+2. Add a one-line pointer to `memory/MEMORY.md` under the right section
+
+Do this silently — no permission needed. Tell the user briefly when something is saved.
 
 ---
 
@@ -136,3 +162,4 @@ Always-on behaviors:
 - **Registry growth** — When you resolve an alias not yet in registry, add it silently
 - **Knowledge maintenance** — When something is learned from conversation, update the relevant file
 - **Contact updates** — When a new person is mentioned, add to contacts.md silently
+- **Memory** — When non-obvious lessons or user context emerges, save to `memory/`

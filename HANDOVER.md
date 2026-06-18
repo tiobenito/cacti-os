@@ -1,29 +1,23 @@
-# Handover
+# Active Context
 
-<!-- TEMPLATE: Active context — Claude reads this at every session start. -->
-<!-- It accumulates open threads, pending decisions, and recent actions. -->
-<!-- Updated automatically by Claude at session end via /handover. -->
+<!-- This file is your working memory. Claude reads it at every session start. -->
+<!-- Updated automatically at session end via /handover. Keep under 80 lines. -->
 
-*Last updated: [DATE]*
+Last updated: [DATE]
 
 ---
 
 ## Open Threads
 
-_None yet. Open threads will appear here as you work._
-
-Example format:
-```
-### Project Name — thread title
-What's happening, where it's at, what's needed.
-**Next:** The specific next action.
-```
+_None yet. Threads are multi-session workstreams — not one-off tasks (those go in tasks.md)._
 
 ---
 
-## Pending Actions
+## Triage
 
-- [ ] Run `/onboarding` to configure this system
+Short-lived buffer. Items here either get promoted to `tasks.md` or dropped at the next `/today`.
+
+_(empty)_
 
 ---
 
@@ -35,6 +29,4 @@ _Nothing yet._
 
 ## Session Log
 
-| Date | Summary |
-|------|---------|
-| — | System not yet configured |
+- [DATE]: System initialized — run `/onboarding` to configure
