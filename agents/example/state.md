@@ -1,4 +1,4 @@
-# Work Agent State
+# [Domain] Agent State
 
 <!-- Auto-updated by the agent after each run. Do not edit manually. -->
 
@@ -14,4 +14,4 @@ _Nothing pending._
 
 ## Notes from Last Run
 
-_Agent has not run yet. Run it with: "Run the work agent"_
+_Agent has not run yet._

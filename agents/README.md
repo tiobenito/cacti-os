@@ -11,8 +11,9 @@ Chief of Staff (orchestrator)
  |-- routes your decisions back to agents
  |
  +-- agents/
-      +-- work/      Daily work project health
-      +-- finance/   Weekly personal finance review
+      +-- example/   Template — copy this to create your own agents
+      +-- work/      (your agent, once created)
+      +-- finance/   (your agent, once created)
 ```
 
 ## How Agents Work
@@ -60,9 +61,9 @@ Claude will read the agent's `AGENT.md`, check its data sources, and write a rep
 
 ## Adding a New Agent
 
-1. Create `agents/<name>/AGENT.md` with identity, scope, data sources, permissions
-2. Create `agents/<name>/state.md` (empty initially)
-3. Set up a scheduled trigger with the appropriate cadence
+1. Copy `agents/example/` to `agents/<name>/` — e.g. `agents/work/`, `agents/finance/`, `agents/health/`
+2. Edit `AGENT.md` to define the scope, data sources, and what to flag
+3. Set up a scheduled trigger with the appropriate cadence (see Scheduling section below)
 4. Mention the agent in your `CLAUDE.md` so `/today` picks it up
 
 ## Scheduling Agents

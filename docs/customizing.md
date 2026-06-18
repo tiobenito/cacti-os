@@ -78,13 +78,11 @@ Example use cases for custom skills:
 
 ## Adding an Agent
 
-1. Create the directory: `agents/<name>/`
-2. Create `AGENT.md` — use `agents/work/AGENT.md` as a template
-3. Create `state.md` — empty initially
-4. Create `reports/` directory (empty)
-5. Mention the agent in your `CLAUDE.md` so `/today` knows to include its reports
+1. Copy `agents/example/` to `agents/<name>/` — e.g. `cp -r agents/example agents/work`
+2. Edit `AGENT.md` to define scope, data sources, and what to flag
+3. Mention the agent in your `CLAUDE.md` so `/today` knows to include its reports
 
-Template `AGENT.md` structure:
+The `example/AGENT.md` is a complete template — fill in the sections, delete the instructions. Template structure:
 ```markdown
 # [Domain] Agent
 

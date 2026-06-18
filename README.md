@@ -8,7 +8,7 @@ This is the personal system I built and use daily, packaged as a template.
 
 - **Persistent context** — Claude reads your `HANDOVER.md` and daily file at session start. It knows where you left off without you explaining.
 - **Life OS** — A structured place for your goals, decisions, and projects. Claude references it when you're making decisions, not just when you ask.
-- **Monitoring agents** — Scheduled Claude instances that check your work projects and finances, and write reports you review each morning.
+- **Monitoring agents** — Scheduled Claude instances that watch whatever domains matter to you (work projects, finances, health, learning) and write reports you review each morning. One generic template included — copy and customize.
 - **Skills** — `/today`, `/quick-task`, `/log`, `/weekly-review`, pre-wired and ready.
 - **Self-improving** — Claude adds to your registry, contacts, and knowledge files silently as you work. The system gets better every session.
 
