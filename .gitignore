@@ -1,0 +1,16 @@
+# Auto-generated files
+daily/*.md
+daily/weekly/*.md
+logs/activity.jsonl
+memory/
+
+# Agent reports (auto-generated, not versioned)
+agents/*/latest-report.md
+agents/*/reports/*.md
+
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
